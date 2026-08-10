@@ -1,5 +1,4 @@
 # citibike-ridership-model
-
 Analyzing Citibike ridership data to uncover how the weather affects bike use.
 
 # Repository Guide
@@ -7,3 +6,6 @@ Analyzing Citibike ridership data to uncover how the weather affects bike use.
 - `data/` - CSV Data retrieved through SQL queries
 - `queries/` - SQL queries
 - `docs/` - data dictionary, notes and supporting materials.
+
+# Project Summary
+This projects builds a linear regression model to predict daily Citibike ridership in NYC using weather forecasts, and ridership data from different dates from the time Citibike started in 2013. The raw data needed some fixing before creating the model. For example the date field needed to be parsed from a string into a proper data type. The weather data also contained a coded sentinel value, which I decided was best to fill with a zero. The model uses temperature, precipitation, wind, days of the week, and a trend feature that defines the days since the first day in the dataset. The trend feature helped calculate growth over time. Out of all three temperature columns provided, I decied to stick with temp_f, since the other, 'max_temp_f', and 'min_temp_f', are just calculations based on temp_f itself. Based on the R^2 Test the model explains approximately 74% of the daily ridership. The coefficients are pretty realistic as well, with each increase in Fahrenheit ridership increases as well by approximately 574 rides. Increase in precipitation lowers ridership by about 4,300 rides. I also predicted that ridership lowers during the weekend because most riders use the CitiBikes as a means of commuting work, and the model supports that prediction for 4/5 weekdays. Riderships lowers significantly on the weekends. The biggest weakness of the model is that based on the residual diagnosis, the prediction error grows with higher ridership days. I fixed that by adding a square trend to improve the R^2 test. Something I would want todo next is factor in holidays in the dates because, I do believe that is an important factor that affects ridership on certain days. I would even argue that, that may be the reason why average ridership is lower on Mondays since a couple federal holidays land on Mondays.
